@@ -1,20 +1,10 @@
 // ─────────────────────────────────────────────────────────────────────
 //  Ejected Multiverse — settings.gradle.kts
-//  Plugin management + repo declarations for NeoGradle
+//  Foojay resolver (auto-download JDK) + plugin/dep management
 // ─────────────────────────────────────────────────────────────────────
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        maven("https://maven.neoforged.net/releases")
-    }
-}
-
-dependencyResolutionManagement {
-    repositories {
-        mavenLocal()
-        maven("https://maven.neoforged.net/releases")
-    }
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
 
 rootProject.name = "ejectedmultiverse"

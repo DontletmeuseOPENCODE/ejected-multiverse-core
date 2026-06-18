@@ -1,52 +1,37 @@
 // ─────────────────────────────────────────────────────────────────────
 //  Ejected Multiverse — build.gradle.kts
 //  NeoForge 1.21.1, Java 21, Mojmap, Kotlin DSL
+//  Plugin: net.neoforged.moddev 2.0.141 (nowoczesny setup, NG_7.1+)
 // ─────────────────────────────────────────────────────────────────────
 
 plugins {
-    id("org.spongepowered.gradle.vanilla") version "0.2.1-SNAPSHOT"
-    id("org.spongepowered.gradle.plugin") version "0.2.1-SNAPSHOT"
-    id("io.github.gleaming8.maven-publish") version "0.2.1-SNAPSHOT"
+    id("net.neoforged.moddev") version "2.0.141"
 }
 
-group = "com.dontletmeuseopencode.ejectedmultiverse"
 version = "0.1.0-alpha"
+group = "com.dontletmeuseopencode.ejectedmultiverse"
+
+neoForge {
+    version = "21.1.77"
+
+    // Validate AT files (recommended by NeoGradle docs)
+    validateAccessTransformers = true
+
+    runs {
+        register("client") { client() }
+        register("server") { server() }
+        register("gameTestServer") { type = "gameTestServer" }
+    }
+
+    mods {
+        register("ejectedmultiverse") {
+            sourceSet(sourceSets.main.get())
+        }
+    }
+}
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
-}
-
-minecraft {
-    version = "1.21.1"
-    parchment {
-        mappingsVersion = "2024.07.28"
-        minecraftVersion = "1.21"
-    }
-    runs {
-        configureEach {
-            workingDirectory(project.file("run"))
-            property("forge.logging.markers", "REGISTRIES")
-            property("forge.enabledGameTestNamespaces", "ejectedmultiverse")
-        }
-        create("client") {
-            client()
-        }
-        create("server") {
-            server()
-        }
-        create("gameTestServer") {
-            type = "gameTestServer"
-        }
-    }
-}
-
-repositories {
-    mavenLocal()
-    maven("https://maven.neoforged.net/releases")
-}
-
-dependencies {
-    implementation("net.neoforged:neoforge:21.1.77")
 }

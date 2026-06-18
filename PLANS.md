@@ -54,8 +54,8 @@ dopiero po `git tag phase-N` i smoke-teście ręcznym.
 - [x] `src/main/java/com/dontletmeuseopencode/ejectedmultiverse/EjectedMultiverse.java` (główna klasa moda)
 - [x] `src/main/resources/META-INF/mods.toml`, `pack.mcmeta`
 - [x] Zaktualizowany `.gitignore` pod projekt MC
-- [ ] `gradle-wrapper.jar` — wygenerować komendą `gradle wrapper --gradle-version 8.10.2` (wymaga JDK 21 + Gradle 8.10+ w systemie). LUB odpalić `./gradlew` raz — ściągnie się sam.
-- [ ] Smoke test: `./gradlew build` → BUILD SUCCESSFUL; klient i serwer startują
+- [x] `gradle-wrapper.jar` wygenerowany (`gradle wrapper --gradle-version 8.10.2`)
+- [x] **Smoke test: `./gradlew build` → BUILD SUCCESSFUL** (6m 26s, JAR 2.9 KB)
 
 ### Jak odpalić po sklonowaniu (Linux/macOS/WSL)
 
