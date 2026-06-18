@@ -1,0 +1,39 @@
+# ===== Gradle / Java =====
+.gradle/
+build/
+out/
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# ===== IDEA / Eclipse / VSCode =====
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+.vscode/
+*.log
+
+# ===== Minecraft run dirs =====
+run/
+logs/
+crash-reports/
+screenshots/
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== Node (leftover, ignoring in case someone re-adds) =====
+node_modules/
+package.json
+package-lock.json
+yarn.lock
+
+# ===== Temp / scratch =====
+*.tmp
+*.swp
+*.bak
