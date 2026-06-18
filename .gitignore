@@ -2,6 +2,8 @@
 .gradle/
 build/
 out/
+classes/
+.kotlin/
 *.class
 *.jar
 !gradle/wrapper/gradle-wrapper.jar
@@ -16,12 +18,17 @@ out/
 .settings/
 .vscode/
 *.log
+*.launch
 
 # ===== Minecraft run dirs =====
 run/
 logs/
 crash-reports/
 screenshots/
+dependencies/
+local/
+saves/
+debug.log
 
 # ===== OS =====
 .DS_Store
@@ -36,4 +43,7 @@ yarn.lock
 # ===== Temp / scratch =====
 *.tmp
 *.swp
+*.swo
 *.bak
+*~
+.cache/

@@ -1,13 +1,31 @@
 # Ejected Multiverse — Horror Mod dla Minecraft
 
-> Liminal / uncanny horror inspirowany Backrooms, The Stanley Parable i
-> SCP. Multi-wymiarowy rdzeń (stąd `multiverse-core` w nazwie), w którym
+> Liminal / uncanny horror inspirowany Backrooms, **The Broken Script** (TBS)
+> i SCP. Multi-wymiarowy rdzeń (stąd `multiverse-core` w nazwie), w którym
 > gracz wpada do "wyrzuconych" warstw rzeczywistości. Każdy wymiar to
 > zamknięta, znajomo-obca przestrzeń z własnymi regułami.
 
 **Stack:** NeoForge 1.21.x · Java 21 · Gradle (Kotlin DSL) · Mojmap mappings
+**Licencja:** MIT (kod), CC0/CC-BY (asset'y z atrybucją)
 
 ---
+
+## 0.5 Ustalenia sesji inicjalnej (2026-06-18)
+
+- **Wejście:** gracz w overworldzie znajduje **obsidian box** z command
+  blockiem w środku. Wejście → `tp` do wymiaru Level 0 ze statusami
+  `Slow Falling` + `Blindness`.
+- **Wyjście:** brak powrotu do overworlda. Wymiary to **łańcuch
+  poziomów** (Level 0 → Level 1 → Level 2 → …) połączonych **portalami
+  wewnątrz wymiarów**. Każdy następny poziom wymyślamy osobno.
+- **Pre-Circuit:** pierwszy mob (Faza 4). Czarny humanoid, **zero oczu**,
+  styl TBS. Własny pixel-art na CC0.
+- **Sanity:** **atmosferyczna** — wpływa tylko na narrację (szepty,
+  dziwne napisy, dialogi). Brak gameplay penalty, brak permadeath.
+- **Wymiary:** kolejność wybierzemy po Fazie 2 (po core). Na razie
+  planowo: Yellow Hallway (Level 0), potem kolejne.
+- **Asset'y:** CC0/CC-BY z atrybucją. Inspiracja z TBS jest dozwolona,
+  nie kopiujemy 1:1 ich tekstur.
 
 ## 0. Zasady projektu
 
@@ -27,14 +45,36 @@ dopiero po `git tag phase-N` i smoke-teście ręcznym.
 ### ✅ Faza 0 — Fundament *(ten commit)*
 - [x] `PLANS.md` z roadmapą
 - [x] Porządki w repo (usunięcie śmieciowego `package.json` / `node_modules`)
-- [ ] `.gitignore` dla projektu MC (build/, .gradle/, run/, *.log, *.iml, .idea/)
+- [x] `.gitignore` dla projektu MC (build/, .gradle/, run/, *.log, *.iml, .idea/)
+- [x] Ustalenia sesji inicjalnej (modid, Pre-Circuit, sanity, wejście/wyjście, asset licencja, Dr. Aldren Voss)
 
-### 🚧 Faza 1 — Szkielet projektu (1-2 dni)
-- [ ] `build.gradle.kts`, `settings.gradle.kts`, `gradle.properties` (NeoForge 1.21.x, Java 21)
-- [ ] `gradle/wrapper/` (gradle-wrapper.jar + .properties)
-- [ ] `src/main/java/com/dontletmeuseopencode/ejectedmultiverse/EjectedMultiverse.java` (główna klasa moda)
-- [ ] `src/main/resources/META-INF/mods.toml`, `pack.mcmeta`
+### ✅ Faza 1 — Szkielet projektu (1-2 dni)
+- [x] `build.gradle.kts`, `settings.gradle.kts`, `gradle.properties` (NeoForge 1.21.1, Java 21)
+- [x] `gradle/wrapper/gradle-wrapper.properties` (Gradle 8.10.2) + `gradlew` (POSIX)
+- [x] `src/main/java/com/dontletmeuseopencode/ejectedmultiverse/EjectedMultiverse.java` (główna klasa moda)
+- [x] `src/main/resources/META-INF/mods.toml`, `pack.mcmeta`
+- [x] Zaktualizowany `.gitignore` pod projekt MC
+- [ ] `gradle-wrapper.jar` — wygenerować komendą `gradle wrapper --gradle-version 8.10.2` (wymaga JDK 21 + Gradle 8.10+ w systemie). LUB odpalić `./gradlew` raz — ściągnie się sam.
 - [ ] Smoke test: `./gradlew build` → BUILD SUCCESSFUL; klient i serwer startują
+
+### Jak odpalić po sklonowaniu (Linux/macOS/WSL)
+
+```bash
+# 1. JDK 21 (Arch):
+sudo pacman -S jdk21-openjdk
+#    (albo: sdkman install 21-open)
+
+# 2. Gradle jednorazowo (do wygenerowania wrappera):
+#    Arch: pacman -S gradle   (albo sdkman install gradle 8.10.2)
+#    Binarnie: https://gradle.org/next-steps/?version=8.10.2
+
+# 3. Wygeneruj wrapper.jar (jednorazowo):
+gradle wrapper --gradle-version 8.10.2
+
+# 4. Build:
+./gradlew build
+./gradlew runClient   # albo runServer
+```
 
 ### 🚧 Faza 2 — Multi-wymiarowy rdzeń (3-5 dni)
 - [ ] Rejestr wymiarów (`DimensionRegistry`) + JSON-owy datapack API
